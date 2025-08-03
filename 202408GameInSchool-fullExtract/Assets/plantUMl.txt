@@ -1,0 +1,45 @@
+@startuml
+
+package プレイヤー側
+{
+    class PlayerUnit {
+        手下です。
+        +int Hp
+        +int AttackPower
+        +void GetDamage(int damage)
+    }
+
+    class PlayerSummoner {
+        +int Level
+        +int Cost
+        +void OnUpdate()
+        +void GetDamage(int value)
+    }
+}
+
+package 敵たち{
+    class EnemyUnit {
+        敵の手下です。
+        +int Hp
+        +int AttackPower
+        +void GetDamage(int damage)
+    }
+
+    class EnemySummoner {
+        -List<EnemyUnitSummonData> 今召喚が必要な敵
+        -EnemyUnitDataSet
+        +void GetDamage(int damage)
+    }
+
+    class EnemyUnitDataSet {
+        レベルごとの
+        敵の配置情報
+    }
+}
+
+
+PlayerSummoner --|> PlayerUnit
+EnemySummoner --|> EnemyUnit
+EnemySummoner ..> EnemyUnitDataSet
+
+@enduml
