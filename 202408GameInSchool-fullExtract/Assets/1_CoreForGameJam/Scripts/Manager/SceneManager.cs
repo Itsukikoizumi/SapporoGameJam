@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 /// <summary>
@@ -17,7 +18,7 @@ public class SceneManager : SingletonMonoBehaviour<SceneManager>
     protected override void doAwake()
     {
         // 全画面初期化
-        foreach(var scene in _sceneList)
+        foreach (var scene in _sceneList)
             scene.OnGameStart();
 
         // 最初のシーンを指定
@@ -56,5 +57,20 @@ public class SceneManager : SingletonMonoBehaviour<SceneManager>
         {
             InputManager.Instance.UnblockInput(InputManager.BlockType.SceneManager);
         });
+    }
+    public void OnNextScene()
+    {
+        int currentIndex = Array.IndexOf(_sceneList, _currentScene);
+        int nextIndex = currentIndex + 1;
+
+        if (nextIndex < _sceneList.Length)
+        {
+            ChangeSceneWithFade(nextIndex);
+        }
+        else
+        {
+            Debug.Log("これ以上シーンがありません");
+            ChangeSceneWithFade(0);
+        }
     }
 }

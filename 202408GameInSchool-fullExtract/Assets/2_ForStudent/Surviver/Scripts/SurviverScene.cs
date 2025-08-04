@@ -28,6 +28,8 @@ namespace Surviver
         // UI管理者
         [SerializeField]
         private SurviverSceneUI _ui;
+        private SurviverSceneUI _sceneUI;
+
 
         /// <summary>
         /// 経過時間
@@ -52,6 +54,7 @@ namespace Surviver
         /// </summary>
         public override void OnSceneStart()
         {
+            Debug.Log("シーン遷移");
             gameObject.SetActive(true);
             _ui.SetGameOver(false);
 
@@ -69,6 +72,18 @@ namespace Surviver
 
             // 経過時間を0に
             _spentTime = 0f;
+            _sceneUI = FindObjectOfType<SurviverSceneUI>();
+            if (_sceneUI != null)
+            {
+                _sceneUI.ResetTimer();
+                Debug.Log("タイマーリセット");
+                _sceneUI.ToggleTimer();
+            }
+            else
+            {
+                Debug.LogWarning("SurviverSceneUI が見つかりませんでした。");
+            }
+
         }
 
         /// <summary>
