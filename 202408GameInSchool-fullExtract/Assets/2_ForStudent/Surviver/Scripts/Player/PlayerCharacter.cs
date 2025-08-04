@@ -45,6 +45,11 @@
         private int _preNextLvExp = 0;
         private int _baseNextLvExp = 8;
 
+        private Item Barrier;
+        private Item bat;
+        private Item Boots;
+        private Item stun;
+
         public void Initialize(SurviverSceneUI ui)
         {
             _rigidbody = GetComponent<Rigidbody2D>();
@@ -208,6 +213,18 @@
             // 次のレベルアップまでの経験値取得割合を計算
             var expProgress = Mathf.InverseLerp(_preNextLvExp, _nextLvExp, _exp);
             _sceneUI.SetExpGauge(expProgress);
+        }
+
+        private void Update()
+        {
+            //this.Barrier = GameObject.Find("Item Brrier");
+            //this.bat = GameObject.Find("Item bat");
+            //this.stun = GameObject.Find("Item stun");
+            //this.Boots = GameObject.Find("Item Boots");
+        }
+
+        public void DecreaseHp()
+        {
         }
     }
 }
