@@ -1,4 +1,4 @@
-
+﻿
 // ポーズ画面です。
 using System;
 using UnityEngine;
