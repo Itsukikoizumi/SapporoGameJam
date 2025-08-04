@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
+using Surviver;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -29,6 +30,7 @@ public class Popup : MonoBehaviour
     private bool _isPlaying = false;
 
     public System.Action OnClose;
+    private SurviverSceneUI _sceneUI;
 
     // 全部強制非表示
     public virtual void Initialize()
@@ -41,7 +43,9 @@ public class Popup : MonoBehaviour
             _closeButton.onClick.RemoveAllListeners();
             _closeButton.onClick.AddListener(() =>
             {
-                Close();
+                _sceneUI = FindObjectOfType<SurviverSceneUI>();
+                Close(); 
+                _sceneUI.ToggleTimer();
             });
         }
     }
