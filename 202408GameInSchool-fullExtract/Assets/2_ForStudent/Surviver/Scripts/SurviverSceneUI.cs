@@ -98,7 +98,7 @@ namespace Surviver
             DOVirtual.DelayedCall(4f, () =>
             {
                 InputManager.Instance.UnblockInput(InputManager.BlockType.GameOver);
-                SceneManager.Instance.ChangeSceneWithFade(1);
+                SceneManager.Instance.ChangeSceneWithFade(3);
             }).SetUpdate(true).Play();
         }
 
