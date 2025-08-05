@@ -28,7 +28,7 @@ namespace Surviver
         public virtual void Shoot(Vector3 position, Vector3 direction, float speed, float offsetAngle = 0f, float scale = 1f)
         {
             transform.position = position;
-            var angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90; // 上向きがデフォなので
+            var angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg; // 上向きがデフォなので
             transform.rotation = Quaternion.Euler(0, 0, angle + offsetAngle);
             transform.localScale = Vector3.one * scale;
             _speed = speed;

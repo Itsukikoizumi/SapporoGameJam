@@ -53,9 +53,9 @@
 
         // Hp系パラメータ
         [SerializeField]
-        public int MaxHp { get; private set;} = 100;
+        public int MaxHp { get; private set;} = 5;
         [SerializeField]
-        public int CurrentHp { get; private set;} = 100;
+        public int CurrentHp { get; private set;} = 5;
 
         private bool _isAlive = true; // 生存フラグ
         private float _invincibleTime = 0; // 無敵時間
@@ -63,6 +63,10 @@
         // 所持アイテム系パラメータ
         [SerializeField]
         private WeaponHolder _weaponHolder;
+
+        [SerializeField]
+        private List<Image> _hpIcons = new List<Image>();
+
         public float ItemGetRange { get; private set; } = 3f;
         private int _level = 1;
         private int _exp = 0;
@@ -125,7 +129,7 @@
                 Move();
                 _weaponHolder.OnUpdate();
             }
-            InvinsibleCountDown();
+            InvincibleCountDown();
             BoostTimeCountDown();
         }
         // ---------------
@@ -154,7 +158,7 @@
             _rigidbody.AddForce(knockBackDir * knockbackPower, ForceMode2D.Impulse);
             
             // 無敵時間を設定
-            _invincibleTime = 0.5f;
+            _invincibleTime = 2f;
         }
 
         public void AddExp(int exp)
@@ -217,13 +221,14 @@
         /// <summary>
         /// 無敵時間の経過を数え上げる
         /// </summary>
-        private void InvinsibleCountDown()
+        private void InvincibleCountDown() // ← 正しいスペルに直す
         {
-            if(_invincibleTime > 0)
+            if (_invincibleTime > 0)
             {
                 _invincibleTime -= Time.deltaTime;
             }
         }
+
 
         /// <summary>
         /// 無敵時間の経過を数え上げる
@@ -252,8 +257,12 @@
 
         private void RefreshUI()
         {
-            _hpText.text = $"HP: {CurrentHp} / {MaxHp}";
+            for (int i = 0; i < _hpIcons.Count; i++)
+            {
+                _hpIcons[i].enabled = i < CurrentHp;
+            }
         }
+
 
         private void RefreshExpGauge()
         {
