@@ -43,7 +43,7 @@ public class ClearScene : SceneBase
     public void OnNextScene()
     {
         EazySoundManager.PlayUISound(AudioLoader.SE("Accept"));
-        SceneManager.Instance.ChangeSceneWithFade(2);
+        SceneManager.Instance.ChangeSceneWithFade(1);
         EazySoundManager.StopAllMusic();
     }
 
