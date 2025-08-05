@@ -1187,6 +1187,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _scoreText: {fileID: 2658885111479447488}
+  _isHighScore: 0
 --- !u!1 &3524870557284885187
 GameObject:
   m_ObjectHideFlags: 0
@@ -6351,7 +6352,8 @@ MonoBehaviour:
   _charaSprite: {fileID: 5615534525623263242}
   _shaker: {fileID: 3151392045233380457}
   _hpText: {fileID: 3641410991546000692}
-  _speed: 5
+  normalSpeed: 1
+  boostedSpeed: 2
   _weaponHolder: {fileID: 7224294826742650171}
 --- !u!58 &261352285078712625
 CircleCollider2D:
@@ -22633,6 +22635,7 @@ Transform:
   - {fileID: 8558972098349162641}
   - {fileID: 4866803596526486136}
   - {fileID: 70950683902303872}
+  - {fileID: 7491851599429501165}
   m_Father: {fileID: 5836550978643158438}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6135374819878684857
@@ -22717,6 +22720,57 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6640734262750721788}
   m_CullTransparentMesh: 1
+--- !u!1 &6690441942150972905
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7491851599429501165}
+  - component: {fileID: 1763109696181136327}
+  m_Layer: 0
+  m_Name: Item Drop
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7491851599429501165
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6690441942150972905}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5543620414386568237}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1763109696181136327
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6690441942150972905}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c26ba8a03241294ebd8473dc57b3c62, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemPrefabs:
+  - {fileID: 7411900510450740112, guid: 4e5d1ac91b1937c4a97b232a8f4f82f3, type: 3}
+  - {fileID: 7411900510450740112, guid: 438cc2079b667804fb23833e225d3a28, type: 3}
+  - {fileID: 7411900510450740112, guid: 48bcc70a959b2ff4a948c3cb260e9c5f, type: 3}
+  - {fileID: 7411900510450740112, guid: 05d6b2dc04a9e1d48beb953460a59bad, type: 3}
+  dropRadius: 5
+  interval: 2
 --- !u!1 &6705407409835689212
 GameObject:
   m_ObjectHideFlags: 0
@@ -22942,6 +22996,8 @@ MonoBehaviour:
   _lvUpEff: {fileID: 326417470002604150}
   _gameOverPanel: {fileID: 3524870557284885187}
   _joystick: {fileID: 3786512182646777708}
+  _timeLimit: 180
+  TimerText: {fileID: 0}
 --- !u!1 &6786145206430966813
 GameObject:
   m_ObjectHideFlags: 0

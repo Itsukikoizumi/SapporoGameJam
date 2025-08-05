@@ -5,15 +5,18 @@ using UnityEngine;
 public class ItemDrop : MonoBehaviour
 {
     public Item[] itemPrefabs;
-    public float dropRadius = 0.5f;
+    public float dropRadius = 10f;
 
     private Transform _playerTransform;
-    private float interval = 20.0f;
     private float timer = 0f;
+
+    [SerializeField]
+    private float interval = 20.0f;
 
     void Start()
     {
         _playerTransform  = GameObject.Find("Player").transform;
+        timer = 0f;
     }
 
     void Update()
@@ -27,7 +30,7 @@ public class ItemDrop : MonoBehaviour
     }
     void DropItemNearPlayer()
     {
-        if (_playerTransform == null || itemPrefabs.Length == 0) { return; }
+        //if (_playerTransform == null || itemPrefabs.Length == 0) { return; }
 
         var playerPosition = _playerTransform.position;
 
@@ -37,7 +40,8 @@ public class ItemDrop : MonoBehaviour
             playerPosition.y + randomCircle.y);
 
         var randomItem = itemPrefabs[Random.Range(0, itemPrefabs.Length)];
-        Instantiate(randomItem, spwnPos, Quaternion.identity);
+        var go = Instantiate(randomItem, spwnPos, Quaternion.identity, transform);
+        Debug.Log("Dropped." + go.name);
     }
 }
 

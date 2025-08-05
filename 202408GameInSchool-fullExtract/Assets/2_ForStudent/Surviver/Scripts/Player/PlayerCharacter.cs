@@ -22,8 +22,29 @@
         private SurviverSceneUI _sceneUI;
 
         // 移動系パラメータ
+
+        /// <summary>
+        /// 通常時の速度
+        /// </summary>
         [SerializeField]
-        private float _speed = 5f;
+        private float normalSpeed = 1.0f;
+
+        /// <summary>
+        /// 加速時の速度
+        /// </summary>
+        [SerializeField]
+        private float boostedSpeed = 2.0f;
+
+        /// <summary>
+        /// 加速状態ならtrue
+        /// </summary>
+        private bool boosted => _boostTime > 0f;
+
+        /// <summary>
+        /// 加速状態の時間
+        /// </summary>
+        private float _boostTime;
+
         private Rigidbody2D _rigidbody;
 
         // Hp系パラメータ
@@ -79,6 +100,9 @@
             // デフォの武器だけonに
             _weaponHolder.SetLv1DefaultWeapon();
 
+            // 加速状態をリセット
+            _boostTime = 0f;
+
             RefreshUI();
             RefreshExpGauge();
         }
@@ -91,6 +115,7 @@
                 _weaponHolder.OnUpdate();
             }
             InvinsibleCountDown();
+            BoostTimeCountDown();
         }
         // ---------------
 
@@ -172,7 +197,10 @@
 
             // ななめ移動したときに早くならないよう正規化。
             var moveDir = new Vector3(x, y, 0).normalized;
-            _rigidbody.AddForce(moveDir * _speed * Time.deltaTime * 100);
+
+            // 速度を求めて設定
+            var speed = boosted ? boostedSpeed : normalSpeed;
+            _rigidbody.AddForce(moveDir * speed);
         }
 
         /// <summary>
@@ -184,6 +212,14 @@
             {
                 _invincibleTime -= Time.deltaTime;
             }
+        }
+
+        /// <summary>
+        /// 無敵時間の経過を数え上げる
+        /// </summary>
+        private void BoostTimeCountDown()
+        {
+            _boostTime -= Time.deltaTime;
         }
 
         private void OnDamaged(int damageValue)
@@ -223,8 +259,14 @@
             //this.Boots = GameObject.Find("Item Boots");
         }
 
-        public void DecreaseHp()
+        public void ItemAbility(Item.Kind kind)
         {
+            switch (kind)
+            {
+                case Item.Kind.Boots:
+                    _boostTime = 7f;
+                    break;
+            }
         }
     }
 }

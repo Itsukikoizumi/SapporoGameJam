@@ -36,7 +36,7 @@ public class Item : MonoBehaviour
 
         if(d<i1+P2)
         {
-            _player.DecreaseHp();
+            _player.ItemAbility(kind);
 
             Destroy(gameObject);
         }
