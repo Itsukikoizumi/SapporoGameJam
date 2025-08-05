@@ -65,7 +65,7 @@ public class SceneManager : SingletonMonoBehaviour<SceneManager>
 
         if (nextIndex < _sceneList.Length)
         {
-            ChangeSceneWithFade(nextIndex);
+            ChangeSceneWithFade(4);
         }
         else
         {

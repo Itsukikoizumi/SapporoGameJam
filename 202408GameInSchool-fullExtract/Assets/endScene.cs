@@ -1,9 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using Hellmade.Sound;
+using Surviver;
 using UnityEngine;
 
-public class ClearScene : SceneBase
+public class endScene : SceneBase
 {
     /// <summary>
     /// ゲーム開始時に画面を隠す処理
@@ -19,10 +20,8 @@ public class ClearScene : SceneBase
     public override void OnSceneStart()
     {
         Show();
-        Debug.Log("タイトルシーン開始");
-
+        Debug.Log("エンドシーン開始");
         EazySoundManager.StopAllMusic();
-        EazySoundManager.PlayMusic(AudioLoader.BGM("魔法使いの旅路"));
     }
 
     /// <summary>
@@ -39,14 +38,13 @@ public class ClearScene : SceneBase
     {
         Hide();
     }
-
-    public void OnNextScene()
+    public void GotitleScene()
     {
+        Debug.Log("タイトルへ");
         EazySoundManager.PlayUISound(AudioLoader.SE("Accept"));
         SceneManager.Instance.ChangeSceneWithFade(1);
         EazySoundManager.StopAllMusic();
     }
-
     // private
     private void Show()
     {
