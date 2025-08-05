@@ -8,7 +8,6 @@ public class Item : MonoBehaviour
     public enum Kind
     {
         Boots,
-        Barrier,
         Bat,
         Stun,
     }
