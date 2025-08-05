@@ -1,8 +1,8 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+
 namespace Surviver
 {
     /// <summary>
@@ -21,8 +21,8 @@ namespace Surviver
 
         // 移動系変数
         [SerializeField]
-        private float _speed = 5f;
-
+        private float _normalspeed = 0.6f;
+   
         [SerializeField]
         private Shaker _shaker;
 
@@ -32,6 +32,14 @@ namespace Surviver
         public int Exp = 2;
         
         private Rigidbody2D _rigidbody;
+
+        //スタン時のスピード
+        [SerializeField]
+        private float _stunSpeed = 0.0f;
+        //スタン時ならtrue
+        private bool stuned => _stunTime > 0f;
+        //スタンの時間
+        private float _stunTime;
         // ターゲットとなるプレイヤーの位置を持つクラス
         private Transform _playerTransform;
 
@@ -83,6 +91,7 @@ namespace Surviver
                 info.WaitTime -= Time.deltaTime;
             });
             _immunes.RemoveAll(e => e.WaitTime <= 0);
+            StunTimeCountDown();
         }
 
         /// <summary>
@@ -140,7 +149,8 @@ namespace Surviver
         {
             // プレイヤーの位置に向かうベクトルを取得
             var moveDir = (_playerTransform.position - this.transform.position).normalized;
-            _rigidbody.AddForce(moveDir * _speed * Time.deltaTime * 100);
+            var _speed = stuned ? _stunSpeed : _normalspeed;
+            _rigidbody.AddForce(moveDir * _speed);
         }
 
         private void OnCollisionEnter2D(Collision2D collisionInfo)
@@ -153,9 +163,31 @@ namespace Surviver
                     player.OnAttacked(_attackPower, 5f, this.transform.position);
 
                 // ノックバック
-                var knockBackDir = (transform.position - player.transform.position).normalized;
-                _rigidbody.AddForce(knockBackDir * 2f, ForceMode2D.Impulse);
+                KnockBack(2f);
             }
+        }
+
+        private void StunTimeCountDown()
+        {
+            _stunTime -= Time.deltaTime;
+        }
+        
+        /// <summary>
+        /// アイテムの効果でスタンさせる
+        /// </summary>
+        public void StunByItem()
+        {
+            _stunTime = 3f;
+        }
+
+        /// <summary>
+        /// ノックバックする
+        /// </summary>
+        public void KnockBack(float power)
+        {
+            var knockBackDir = (transform.position - _playerTransform.position).normalized;
+            _rigidbody.AddForce(knockBackDir * power, ForceMode2D.Impulse);
+
         }
     }
 }

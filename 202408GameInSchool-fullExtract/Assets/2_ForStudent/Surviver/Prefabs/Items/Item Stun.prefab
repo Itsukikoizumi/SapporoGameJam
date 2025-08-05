@@ -50,11 +50,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 856021767801916681, guid: 7f2bb4473812bc74e82f082c7a9db260, type: 3}
       propertyPath: kind
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4331594540500277798, guid: 7f2bb4473812bc74e82f082c7a9db260, type: 3}
       propertyPath: m_Name
-      value: Item Barrier
+      value: Item Stun
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

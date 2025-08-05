@@ -5,13 +5,13 @@ using UnityEngine;
 public class ItemDrop : MonoBehaviour
 {
     public Item[] itemPrefabs;
-    public float dropRadius = 10f;
+    public float dropRadius = 12f;
 
     private Transform _playerTransform;
     private float timer = 0f;
 
     [SerializeField]
-    private float interval = 20.0f;
+    private float interval = 20f;
 
     void Start()
     {

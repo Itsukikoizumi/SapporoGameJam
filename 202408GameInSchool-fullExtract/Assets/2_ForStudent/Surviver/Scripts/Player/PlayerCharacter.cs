@@ -1,5 +1,6 @@
 ﻿namespace Surviver
 {
+    using System.Collections.Generic;
     using DG.Tweening;
     using TMPro;
     using Unity.VisualScripting;
@@ -20,6 +21,7 @@
         [SerializeField]
         private TextMeshProUGUI _hpText;
         private SurviverSceneUI _sceneUI;
+        private SurviverScene _surviverScene;
 
         // 移動系パラメータ
 
@@ -27,13 +29,13 @@
         /// 通常時の速度
         /// </summary>
         [SerializeField]
-        private float normalSpeed = 1.0f;
+        private float normalSpeed = 0.6f;
 
         /// <summary>
         /// 加速時の速度
         /// </summary>
         [SerializeField]
-        private float boostedSpeed = 2.0f;
+        private float boostedSpeed = 1.0f;
 
         /// <summary>
         /// 加速状態ならtrue
@@ -46,6 +48,8 @@
         private float _boostTime;
 
         private Rigidbody2D _rigidbody;
+        //近くの敵
+        private float _nearenemy;
 
         // Hp系パラメータ
         [SerializeField]
@@ -71,11 +75,18 @@
         private Item Boots;
         private Item stun;
 
+        //敵の情報を取得
+        private EnemyCharacter _enemy;
+        private EnemyCharacter _boss;
+
         public void Initialize(SurviverSceneUI ui)
         {
             _rigidbody = GetComponent<Rigidbody2D>();
             _sceneUI = ui;
             _weaponHolder.Initialize();
+
+            _surviverScene = GetComponentInParent<SurviverScene>(true);
+            Debug.Log(_surviverScene);
         }
 
         public void ResetStatus()
@@ -257,6 +268,12 @@
             //this.bat = GameObject.Find("Item bat");
             //this.stun = GameObject.Find("Item stun");
             //this.Boots = GameObject.Find("Item Boots");
+
+            //var enmy = GameObject.Find("EnemyPool");
+            //_enemy = enmy.GetComponent<EnemyCharacter>();
+
+            //var boss = GameObject.Find("EnemyPool_boss");
+            //_boss = boss.GetComponent<EnemyCharrcter>();
         }
 
         public void ItemAbility(Item.Kind kind)
@@ -264,8 +281,49 @@
             switch (kind)
             {
                 case Item.Kind.Boots:
-                    _boostTime = 7f;
+                    _boostTime = 5f;
                     break;
+                //case Item.Kind.Barrier;
+
+                case Item.Kind.Bat:
+                    foreach(var enemy in nearlyEnemies)
+                    {
+                        enemy.KnockBack(20);
+                    }
+                    break;
+
+                case Item.Kind.Stun:
+                    _surviverScene.StunAllEnemies();
+                    //{
+                    //    var enmy = GameObject.Find("EnemyPool");
+                    //    _enemy = enmy.GetComponent<EnemyCharacter>();
+
+                    //}
+                    //_enemy.Stunitem();
+                    //_boss.Stunitem();
+                    break;
+            }
+        }
+
+        private List<EnemyCharacter> nearlyEnemies = new List<EnemyCharacter>();
+
+        private void OnTriggerEnter2D(Collider2D collision)
+        {
+            var enemy = collision.gameObject.GetComponent<EnemyCharacter>();
+
+            if (enemy)
+            {
+                nearlyEnemies.Add(enemy);
+            }
+        }
+
+        private void OnTriggerExit2D(Collider2D collision)
+        {
+            var enemy = collision.gameObject.GetComponent<EnemyCharacter>();
+
+            if (enemy && nearlyEnemies.Contains(enemy))
+            {
+                nearlyEnemies.Remove(enemy);
             }
         }
     }

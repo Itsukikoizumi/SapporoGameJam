@@ -111,5 +111,16 @@ namespace Surviver
             // 重力を元に戻す
             Physics.gravity = new Vector3(0, -9.81f, 0);
         }
+
+        /// <summary>
+        /// すべての敵をスタンさせる
+        /// </summary>
+        public void StunAllEnemies()
+        {
+            foreach(var pool in _enemyCharacterPools)
+            {
+                pool.StunEnemies();
+            }
+        }
     }
 }

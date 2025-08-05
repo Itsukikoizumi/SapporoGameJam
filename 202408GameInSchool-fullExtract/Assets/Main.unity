@@ -2581,6 +2581,46 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 559174840}
   m_CullTransparentMesh: 1
+--- !u!1 &574528361 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4724331280960022834, guid: d0efab652b4f26d4fb1dcfcc546066ce, type: 3}
+  m_PrefabInstance: {fileID: 2034100465}
+  m_PrefabAsset: {fileID: 0}
+--- !u!58 &574528366
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 574528361}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 7
 --- !u!1 &607663443
 GameObject:
   m_ObjectHideFlags: 0
@@ -7549,6 +7589,30 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1763109696181136327, guid: d0efab652b4f26d4fb1dcfcc546066ce, type: 3}
+      propertyPath: interval
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 1763109696181136327, guid: d0efab652b4f26d4fb1dcfcc546066ce, type: 3}
+      propertyPath: dropRadius
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 1763109696181136327, guid: d0efab652b4f26d4fb1dcfcc546066ce, type: 3}
+      propertyPath: itemPrefabs.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1763109696181136327, guid: d0efab652b4f26d4fb1dcfcc546066ce, type: 3}
+      propertyPath: itemPrefabs.Array.data[1]
+      value: 
+      objectReference: {fileID: 7411900510450740112, guid: 05d6b2dc04a9e1d48beb953460a59bad, type: 3}
+    - target: {fileID: 1763109696181136327, guid: d0efab652b4f26d4fb1dcfcc546066ce, type: 3}
+      propertyPath: itemPrefabs.Array.data[2]
+      value: 
+      objectReference: {fileID: 7411900510450740112, guid: 48bcc70a959b2ff4a948c3cb260e9c5f, type: 3}
+    - target: {fileID: 1763109696181136327, guid: d0efab652b4f26d4fb1dcfcc546066ce, type: 3}
+      propertyPath: itemPrefabs.Array.data[3]
+      value: 
+      objectReference: {fileID: 7411900510450740112, guid: 438cc2079b667804fb23833e225d3a28, type: 3}
     - target: {fileID: 2416668196373427023, guid: d0efab652b4f26d4fb1dcfcc546066ce, type: 3}
       propertyPath: m_ChunkCullingBounds.x
       value: 0.0031446815
@@ -7641,6 +7705,18 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 384
       objectReference: {fileID: 0}
+    - target: {fileID: 6050516106348826526, guid: d0efab652b4f26d4fb1dcfcc546066ce, type: 3}
+      propertyPath: _speed
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6050516106348826526, guid: d0efab652b4f26d4fb1dcfcc546066ce, type: 3}
+      propertyPath: normalSpeed
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6050516106348826526, guid: d0efab652b4f26d4fb1dcfcc546066ce, type: 3}
+      propertyPath: boostedSpeed
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7194212579727354986, guid: d0efab652b4f26d4fb1dcfcc546066ce, type: 3}
       propertyPath: m_ChunkCullingBounds.x
       value: 0.0031446815
@@ -7655,7 +7731,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8368255572271581224, guid: d0efab652b4f26d4fb1dcfcc546066ce, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8504555932035531840, guid: d0efab652b4f26d4fb1dcfcc546066ce, type: 3}
       propertyPath: TimerText
@@ -7671,7 +7747,10 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 6978393895344561808, guid: d0efab652b4f26d4fb1dcfcc546066ce, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1331306818}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4724331280960022834, guid: d0efab652b4f26d4fb1dcfcc546066ce, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 574528366}
   m_SourcePrefab: {fileID: 100100000, guid: d0efab652b4f26d4fb1dcfcc546066ce, type: 3}
 --- !u!114 &2034100466 stripped
 MonoBehaviour:
@@ -7769,8 +7848,8 @@ SceneRoots:
   - {fileID: 1682526311}
   - {fileID: 1059259388}
   - {fileID: 1633418101}
+  - {fileID: 2034100465}
   - {fileID: 480511893}
   - {fileID: 985045871}
   - {fileID: 708148289}
   - {fileID: 1782354275}
-  - {fileID: 2034100465}

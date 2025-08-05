@@ -19,7 +19,7 @@ namespace Surviver
         private int _spawnNum = 2;
         [SerializeField]
         private int _lvUpSpawnCount = 5;
-        
+
         private int _currentSpawnCount = 0;
 
         /// <summary>
@@ -76,7 +76,7 @@ namespace Surviver
 
             // スポーンタイマーを経過時間分減らして、満たしていそうなら生成
             _currentSpawnTimer -= Time.deltaTime;
-            if(_currentSpawnTimer <= 0f)
+            if (_currentSpawnTimer <= 0f)
             {
                 SpawnEnemyAroundPlayer();
                 _currentSpawnTimer = _spawnTimer;
@@ -134,6 +134,20 @@ namespace Surviver
             {
                 // 敵がやられたら、経験値アイテムを出現させる
                 _expItemPool.SpawnExp(enemy.transform.position);
+            }
+        }
+
+        /// <summary>
+        /// プール内の敵をスタンさせる
+        /// </summary>
+        public void StunEnemies()
+        {
+            foreach (var e in _list)
+            {
+                if (e.gameObject.activeInHierarchy)
+                {
+                    e.StunByItem();
+                }
             }
         }
     }

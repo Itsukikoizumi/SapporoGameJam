@@ -9,8 +9,8 @@ public class Item : MonoBehaviour
     {
         Boots,
         Barrier,
-        bat,
-        stun,
+        Bat,
+        Stun,
     }
 
     public Kind kind;

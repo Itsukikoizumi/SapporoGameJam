@@ -196,7 +196,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _attackPower: 20
   _maxHp: 15
-  _speed: 2
+  _speed: 0.4
   _shaker: {fileID: 390751585501098648}
   _bulletPatterns:
   - {fileID: 5739309926607427123}
